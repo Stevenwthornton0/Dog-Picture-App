@@ -1,8 +1,8 @@
 "use strict";
 
-let pictures = $('input').val();
-
 function getDogImages() {
+  let pictures = $('input').val();
+  console.log(pictures);
   fetch(`https://dog.ceo/api/breeds/image/random/${pictures}`)
     .then(response => response.json())
     .then(responseJSON => displayResults(responseJSON))
@@ -10,9 +10,12 @@ function getDogImages() {
 }
 
 function displayResults(responseJSON) {
-  for (i = 0; i < pictures; i++) {
-    $('images').html(`
-    <img src="${responseJSON.message[i]} class=results-img>`
+  let pictures = $('input').val();
+  const total = parseInt(pictures);
+  console.log(total);
+  for (let i = 0; i < total; i++) {
+    $('images').append(`
+    <img src="${responseJSON.message[i]}" class="results-img">`
     );
   }
 }
